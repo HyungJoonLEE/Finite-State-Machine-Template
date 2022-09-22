@@ -133,14 +133,14 @@ set(CLANG_TIDY_CHECKS "${CLANG_TIDY_CHECKS},-clang-analyzer-security.insecureAPI
 set(CMAKE_C_CLANG_TIDY clang-tidy -checks=${CLANG_TIDY_CHECKS},--quiet)
 
 
-add_executable(fsm ${SOURCE_LIST})
-add_dependencies(fsm doxygen)
+add_executable(${PROJECT_NAME} ${SOURCE_LIST})
+add_dependencies(${PROJECT_NAME} doxygen)
 
 find_library(LIBDC_ERROR dc_error REQUIRED)
 find_library(LIBDC_POSIX dc_posix REQUIRED)
 target_link_libraries(fsm ${LIBDC_ERROR})
 target_link_libraries(fsm ${LIBDC_POSIX})
-target_include_directories(fsm PRIVATE ../include/fsm)
-target_include_directories(fsm PRIVATE /usr/include)
-target_include_directories(fsm PRIVATE /usr/local/include)
-target_link_directories(fsm PRIVATE /usr/local/lib)
+target_include_directories(${PROJECT_NAME} PRIVATE ../include/fsm)
+target_include_directories(${PROJECT_NAME} PRIVATE /usr/include)
+target_include_directories(${PROJECT_NAME} PRIVATE /usr/local/include)
+target_link_directories(${PROJECT_NAME} PRIVATE /usr/local/lib)
